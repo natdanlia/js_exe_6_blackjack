@@ -10,20 +10,32 @@
 */
 
 
+// function handValue (cards) {
+//  let totalValue = 0;
+//       for (var i = 0; i < cards.length; i++) {
+//         if(cards[i] === "K" || cards[i] === "J" || cards[i] === "Q"){
+//           cards[i] = 10;
+//         } else if(totalValue >= 21){
+//           cards[i] = 11;
+//         }
+
+
+
 function handValue (cards) {
  let totalValue = 0;
       for (var i = 0; i < cards.length; i++) {
         if(cards[i] === "K" || cards[i] === "J" || cards[i] === "Q"){
-          cards[i] = 10;
-        } else if(totalValue >= 21){
-          cards[i] = 11;
-        }
-
-
-
-
-      totalValue = parseInt(cards[i]) + totalValue;
-
+          totalValue += 10
+        } else if(cards[i] === "A" && totalValue > 10){
+          totalValue += 1
+        }else if (cards[i] === "A" && totalValue <= 10){
+          totalValue += 11
+        } else {
+        totalValue = parseInt(cards[i]) + totalValue;
+      }
+    }
+    if (totalValue > 21 && cards.includes("A")){
+      totalValue -= 10;
     }
   return totalValue;
 }
